@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Proteínas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Selecciona tu pedido</h1>
+
+        <h2>Proteína</h2>
+        <div class="options" id="proteinas">
+            <div class="option" data-precio="10000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/pollo-frito.png" alt="Pollo">
+                <p>Pollo ($10.000)</p>
+            </div>
+            <div class="option" data-precio="12000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/carne.jpeg" alt="Carne">
+                <p>Carne ($12.000)</p>
+            </div>
+            <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/pescado.jpeg" alt="Pescado">
+                <p>Pescado ($15.000)</p>
+            </div>
+        </div>
+
+        <h2>Principio</h2>
+        <div class="options" id="principios">
+            <div class="option" data-precio="0" data-tipo="principio" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/arroz.jpeg" alt="Arroz">
+                <p>Arroz (Gratis)</p>
+            </div>
+            <div class="option" data-precio="0" data-tipo="principio" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/papas-fritas.png" alt="Papas">
+                <p>Papas (Gratis)</p>
+            </div>
+            <div class="option" data-precio="0" data-tipo="principio" onclick="seleccionarOpcion(this)">
+                <img src="imagenes/ensalada.jpeg" alt="Ensalada">
+                <p>Ensalada (Gratis)</p>
+            </div>
+        </div>
+
+        <div id="total">Total a pagar: $0</div>
+
+        <button id="pse-button" onclick="pagar()">Pagar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
