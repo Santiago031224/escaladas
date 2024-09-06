@@ -1,2 +1,0 @@
-# escaladas
-menu escaladas cafe
