@@ -1,5 +1,6 @@
 let seleccionProteina = null;
 let seleccionPrincipio = null;
+let seleccionAcompañamiento = null;
 
 function seleccionarOpcion(elemento) {
     const tipo = elemento.getAttribute('data-tipo');
@@ -12,6 +13,9 @@ function seleccionarOpcion(elemento) {
     } else if (tipo === 'principio') {
         if (seleccionPrincipio) seleccionPrincipio.classList.remove('selected');
         seleccionPrincipio = elemento;
+    }else if (tipo === 'Acompañamientos'){
+        if (seleccionAcompañamiento) seleccionAcompañamiento.classList.remove('selected');
+        seleccionAcompañamiento = elemento;
     }
 
     // Seleccionar la nueva opción
@@ -23,13 +27,15 @@ function seleccionarOpcion(elemento) {
 function calcularTotal() {
     const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
-    const total = totalProteina + totalPrincipio; // Principio siempre será 0
+    const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
+    const total = totalProteina + totalPrincipio + totalAcompañamiento; // Principio siempre será 0
     document.getElementById('total').textContent = `Total a pagar: $${total}`;
 }
 
 function pagar() {
     const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
+    const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
     const total = totalProteina + totalPrincipio;
     
     if (totalProteina > 0) {
