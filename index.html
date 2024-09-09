@@ -9,32 +9,37 @@
 <body>
 
     <div class="container">
+
         <h1>Selecciona tu pedido</h1>
 
         <h2>Proteína</h2>
         <div class="options" id="proteinas">
-            <div class="option" data-precio="10000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
-                <img src="pollo-frito.png" alt="Pollo">
-                <p>Pollo ($10.000)</p>
-            </div>
-            <div class="option" data-precio="12000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
-                <img src="carne.jpeg" alt="Res">
-                <p>Res ($12.000)</p>
+            <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="pollo.jpg" alt="Pollo">
+                <p>Pollo ($15.000)</p>
             </div>
             <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
-                <img src="cerdo.jpeg" alt="Cerdo">
+                <img src="carne.jpg" alt="Res">
+                <p>Res ($15.000)</p>
+            </div>
+            <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="cerdo.jpg" alt="Cerdo">
                 <p>Cerdo ($15.000)</p>
             </div>
             <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
                 <img src="costillasBBQ.jpg" alt="Costillas BBQ">
                 <p>Costillas BBQ ($15.000)</p>
             </div>
+            <div class="option" data-precio="15000" data-tipo="proteina" onclick="seleccionarOpcion(this)">
+                <img src="milanesa.jpg" alt="Milanesa">
+                <p>Milanesa ($15.000)</p>
+            </div>
         </div>
 
         <h2>Arroces</h2>
         <div class="options" id="principios">
             <div class="option" data-precio="0" data-tipo="principio" onclick="seleccionarOpcion(this)">
-                <img src="arroz.jpeg" alt="Arroz">
+                <img src="arroz.jpg" alt="Arroz">
                 <p>Arroz (Gratis)</p>
             </div>
             <div class="option" data-precio="0" data-tipo="principio" onclick="seleccionarOpcion(this)">
@@ -58,11 +63,16 @@
         <h2>Ensaladas</h2>
         <div class="options" id="Ensaladas">
             <div class="option" data-precio="0" data-tipo="Ensaladas" onclick="seleccionarOpcion(this)">
-                <img src="ensalada.jpeg" alt="Ensalada CLasica">
+                <img src="ensalada.jpg" alt="Ensalada CLasica">
                 <p>Ensalada Clasica (Gratis)</p>
             </div>
 
         </div>
+
+        <h1>Selecciona tu pedido</h1>
+
+        <label for="nombre">Ingresa tu nombre:</label>
+     <input type="text" id="nombre" placeholder="Escribe tu nombre aquí" />
 
         <div id="total">Total a pagar: $0</div>
 
