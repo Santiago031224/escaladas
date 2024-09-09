@@ -3,8 +3,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../imagenes/fondo.jpg);
-    background-size: 95%; /* Ajusta este valor para hacerlo más pequeño */
+    background-image: url(fondo.jpg);
+    background-size: 95%; 
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
