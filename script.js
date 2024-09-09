@@ -1,6 +1,7 @@
 let seleccionProteina = null;
 let seleccionPrincipio = null;
 let seleccionAcompañamiento = null;
+let seleccionEnsalada = null;
 
 function seleccionarOpcion(elemento) {
     const tipo = elemento.getAttribute('data-tipo');
@@ -16,6 +17,9 @@ function seleccionarOpcion(elemento) {
     }else if (tipo === 'Acompañamientos'){
         if (seleccionAcompañamiento) seleccionAcompañamiento.classList.remove('selected');
         seleccionAcompañamiento = elemento;
+    }else if (tipo === 'Ensalada'){
+         if (seleccionEnsalada) seleccionEnsalada.classList.remove('selected');
+        seleccionEnsalada = elemento;
     }
 
     // Seleccionar la nueva opción
@@ -26,17 +30,19 @@ function seleccionarOpcion(elemento) {
 
 function calcularTotal() {
     const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
+    const totalEnsalada = seleccionEnsalada ? parseFloat(seleccionEnsalada.getAttribute('data-precio')) : 0;
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
     const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
-    const total = totalProteina + totalPrincipio + totalAcompañamiento; // Principio siempre será 0
+    const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada; // Principio siempre será 0
     document.getElementById('total').textContent = `Total a pagar: $${total}`;
 }
 
 function pagar() {
     const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
+    const totalEnsalada = seleccionEnsalada ? parseFloat(seleccionEnsalada.getAttribute('data-precio')) : 0;
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
     const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
-    const total = totalProteina + totalPrincipio;
+    const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada;
     
     if (totalProteina > 0) {
         window.location.href = `https://www.pse.com.co/inicio/?total=${total}`;

@@ -2,13 +2,14 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Cambiado de center a flex-start */
     background-image: url(fondo.jpg);
     background-size: 95%; 
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh; /* Ajusta al contenido */
     background-color: #f4f4f4;
+    padding-top: 20px; /* Añadido para evitar que el contenido toque el borde superior */
 }
 
 .container {
