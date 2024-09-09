@@ -1,43 +1,43 @@
-    let seleccionProteina = null;
-    let seleccionPrincipio = null;
-    let seleccionAcompañamiento = null;
-    let seleccionEnsalada = null;
+let seleccionProteina = null;
+let seleccionPrincipio = null;
+let seleccionAcompañamiento = null;
+let seleccionEnsalada = null;
 
-    function seleccionarOpcion(elemento) {
-        const tipo = elemento.getAttribute('data-tipo');
-        const precio = parseFloat(elemento.getAttribute('data-precio'));
+function seleccionarOpcion(elemento) {
+    const tipo = elemento.getAttribute('data-tipo');
+    const precio = parseFloat(elemento.getAttribute('data-precio'));
 
-        // Deseleccionar la opción anterior si existe
-        if (tipo === 'proteina') {
-            if (seleccionProteina) seleccionProteina.classList.remove('selected');
-            seleccionProteina = elemento;
-        } else if (tipo === 'principio') {
-            if (seleccionPrincipio) seleccionPrincipio.classList.remove('selected');
-            seleccionPrincipio = elemento;
-        }else if (tipo === 'Acompañamientos'){
-            if (seleccionAcompañamiento) seleccionAcompañamiento.classList.remove('selected');
-            seleccionAcompañamiento = elemento;
-        }else if (tipo === 'Ensalada'){
-             if (seleccionEnsalada) seleccionEnsalada.classList.remove('selected');
-            seleccionEnsalada = elemento;
-        }
-
-        // Seleccionar la nueva opción
-        elemento.classList.add('selected');
-
-        calcularTotal();
+    // Deseleccionar la opción anterior si existe
+    if (tipo === 'proteina') {
+        if (seleccionProteina) seleccionProteina.classList.remove('selected');
+        seleccionProteina = elemento;
+    } else if (tipo === 'principio') {
+        if (seleccionPrincipio) seleccionPrincipio.classList.remove('selected');
+        seleccionPrincipio = elemento;
+    } else if (tipo === 'Acompañamientos') {
+        if (seleccionAcompañamiento) seleccionAcompañamiento.classList.remove('selected');
+        seleccionAcompañamiento = elemento;
+    } else if (tipo === 'Ensaladas') {
+        if (seleccionEnsalada) seleccionEnsalada.classList.remove('selected');
+        seleccionEnsalada = elemento;
     }
 
-    function calcularTotal() {
-        const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
-        const totalEnsalada = seleccionEnsalada ? parseFloat(seleccionEnsalada.getAttribute('data-precio')) : 0;
-        const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
-        const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
-        const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada; // Principio siempre será 0
-        document.getElementById('total').textContent = `Total a pagar: $${total}`;
-    }
+    // Seleccionar la nueva opción
+    elemento.classList.add('selected');
 
-    function pagar() {
+    calcularTotal();
+}
+
+function calcularTotal() {
+    const totalProteina = seleccionProteina ? parseFloat(seleccionProteina.getAttribute('data-precio')) : 0;
+    const totalEnsalada = seleccionEnsalada ? parseFloat(seleccionEnsalada.getAttribute('data-precio')) : 0;
+    const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
+    const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
+    const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada; // Principio siempre será 0
+    document.getElementById('total').textContent = `Total a pagar: $${total}`;
+}
+
+function pagar() {
     const nombre = document.getElementById('nombre').value; // Captura el nombre del usuario
     
     if (!nombre) {
@@ -52,13 +52,12 @@
     const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada;
     
     if (totalProteina > 0) {
-        // Almacena el nombre y el total en localStorage
-        localStorage.setItem('nombreUsuario', nombre);
-        localStorage.setItem('totalPago', total);
+        // Almacena el pedido en localStorage
+        localStorage.setItem('pedidoActual', JSON.stringify({ nombre: nombre, total: total }));
         
-        window.location.href = `https://www.pse.com.co/inicio/?total=${total}`;
+        // Redirige a la pantalla de confirmación
+        window.location.href = 'confirmacion.html';
     } else {
         alert('Por favor selecciona una proteína');
     }
 }
-

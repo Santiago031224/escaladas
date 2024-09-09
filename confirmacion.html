@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pedido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Confirmación de Pedido</h1>
+
+        <div id="confirmacion">
+            <p id="mensaje-confirmacion"></p>
+        </div>
+
+        <button id="pagar-button" onclick="pagar()">Pagar</button>
+        <button id="volver-button" onclick="volver()">Volver a pedir</button>
+
+    </div>
+
+    <script>
+        // Obtener datos del pedido desde localStorage
+        const pedido = JSON.parse(localStorage.getItem('pedidoActual'));
+
+        // Mostrar datos del pedido
+        const mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
+        if (pedido) {
+            mensajeConfirmacion.textContent = `Nombre: ${pedido.nombre} - Total: $${pedido.total}`;
+        } else {
+            mensajeConfirmacion.textContent = 'No hay datos de pedido.';
+        }
+
+        function pagar() {
+            const total = pedido ? pedido.total : 0;
+            window.location.href = `https://www.pse.com.co/inicio/?total=${total}`;
+        }
+
+        function volver() {
+            // Eliminar el pedido actual del localStorage
+            localStorage.removeItem('pedidoActual');
+            // Redirigir a la página principal
+            window.location.href = 'index.html'; // Cambia 'index.html' al nombre de tu archivo principal
+        }
+    </script>
+
+</body>
+</html>
