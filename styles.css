@@ -27,7 +27,8 @@ h1 {
 
 .options {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -36,6 +37,9 @@ h1 {
     border: 2px solid transparent;
     border-radius: 10px;
     padding: 10px;
+    width: calc(33.33% - 20px); /* Para que quepan 3 opciones por fila */
+    box-sizing: border-box; /* Asegura que el padding y el ancho se calculen correctamente */
+    margin: 10px;
 }
 
 .option img {
@@ -44,6 +48,7 @@ h1 {
     object-fit: cover;
     border-radius: 10px;
 }
+
 
 .option.selected {
     border-color: #4CAF50;
