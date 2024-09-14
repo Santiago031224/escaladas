@@ -33,12 +33,12 @@ function calcularTotal() {
     const totalEnsalada = seleccionEnsalada ? parseFloat(seleccionEnsalada.getAttribute('data-precio')) : 0;
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
     const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
-    const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada; // Principio siempre será 0
+    const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada;
     document.getElementById('total').textContent = `Total a pagar: $${total}`;
 }
 
 function pagar() {
-    const nombre = document.getElementById('nombre').value; // Captura el nombre del usuario
+    const nombre = document.getElementById('nombre').value;
     
     if (!nombre) {
         alert('Por favor ingresa tu nombre');
