@@ -39,7 +39,7 @@ function calcularTotal() {
 
 function pagar() {
     const nombre = document.getElementById('nombre').value;
-    
+
     if (!nombre) {
         alert('Por favor ingresa tu nombre');
         return;
@@ -50,14 +50,21 @@ function pagar() {
     const totalPrincipio = seleccionPrincipio ? parseFloat(seleccionPrincipio.getAttribute('data-precio')) : 0;
     const totalAcompañamiento = seleccionAcompañamiento ? parseFloat(seleccionAcompañamiento.getAttribute('data-precio')) : 0;
     const total = totalProteina + totalPrincipio + totalAcompañamiento + totalEnsalada;
-    
+
     if (totalProteina > 0) {
-        // Almacena el pedido en localStorage
-        localStorage.setItem('pedidoActual', JSON.stringify({ nombre: nombre, total: total }));
-        
+        // Obtener todos los pedidos anteriores
+        let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+
+        // Agregar el nuevo pedido
+        pedidos.push({ nombre: nombre, total: total });
+
+        // Guardar de nuevo en Local Storage
+        localStorage.setItem('pedidos', JSON.stringify(pedidos));
+
         // Redirige a la pantalla de confirmación
         window.location.href = 'confirmacion.html';
     } else {
         alert('Por favor selecciona una proteína');
     }
 }
+

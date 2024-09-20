@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Historial de Pedidos</h1>
+        <div id="historial"></div>
+
+    </div>
+
+    <script>
+        // Función para actualizar el historial en la página
+        function actualizarHistorial() {
+            const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+            const historial = document.getElementById('historial');
+            historial.innerHTML = ''; // Limpiar el historial actual
+
+            if (pedidos.length > 0) {
+                pedidos.forEach((pedido, index) => {
+                    const pedidoDiv = document.createElement('div');
+                    pedidoDiv.textContent = `Pedido ${index + 1}: Nombre: ${pedido.nombre}, Total: $${pedido.total} `;
+
+                    // Crear botón para eliminar
+                    const eliminarButton = document.createElement('button');
+                    eliminarButton.textContent = 'Eliminar';
+                    eliminarButton.onclick = () => eliminarPedido(index);
+                    pedidoDiv.appendChild(eliminarButton);
+                    
+                    historial.appendChild(pedidoDiv);
+                });
+            } else {
+                historial.textContent = 'No hay pedidos realizados.';
+            }
+        }
+
+        // Función para eliminar un pedido
+        function eliminarPedido(index) {
+            let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+            // Eliminar el pedido en la posición dada
+            pedidos.splice(index, 1);
+            // Guardar la lista actualizada en localStorage
+            localStorage.setItem('pedidos', JSON.stringify(pedidos));
+            // Actualizar el historial en la página
+            actualizarHistorial();
+        }
+
+        // Inicializar el historial al cargar la página
+        actualizarHistorial();
+    </script>
+
+</body>
+</html>

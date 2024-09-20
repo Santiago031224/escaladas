@@ -22,25 +22,28 @@
     </div>
 
     <script>
-        // Obtener datos del pedido desde localStorage
-        const pedido = JSON.parse(localStorage.getItem('pedidoActual'));
+        // Obtener todos los pedidos desde localStorage
+        const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
 
-        // Mostrar datos del pedido
+        // Mostrar datos del último pedido
         const mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
-        if (pedido) {
-            mensajeConfirmacion.textContent = `Nombre: ${pedido.nombre} - Total: $${pedido.total}`;
+        if (pedidos.length > 0) {
+            const ultimoPedido = pedidos[pedidos.length - 1];
+            mensajeConfirmacion.textContent = `Nombre: ${ultimoPedido.nombre} - Total: $${ultimoPedido.total}`;
         } else {
             mensajeConfirmacion.textContent = 'No hay datos de pedido.';
         }
 
         function pagar() {
-            const total = pedido ? pedido.total : 0;
-            window.location.href = `https://checkout.bold.co/payment/LNK_P7E4OL4FLF`;
+            const ultimoPedido = pedidos.length > 0 ? pedidos[pedidos.length - 1] : null;
+            if (ultimoPedido) {
+                window.location.href = `https://checkout.bold.co/payment/LNK_P7E4OL4FLF`;
+            } else {
+                alert('No hay un pedido para pagar.');
+            }
         }
 
         function volver() {
-            // Eliminar el pedido actual del localStorage
-            localStorage.removeItem('pedidoActual');
             // Redirigir a la página principal
             window.location.href = 'index.html'; // Cambia 'index.html' al nombre de tu archivo principal
         }

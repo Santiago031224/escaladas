@@ -1,0 +1,41 @@
+const express = require('express');
+const fs = require('fs');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// Leer datos del archivo JSON
+app.get('/pedidos', (req, res) => {
+  fs.readFile('pedidos.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error leyendo los pedidos');
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
+// Guardar un nuevo pedido
+app.post('/guardar-pedido', (req, res) => {
+  const nuevoPedido = req.body;
+
+  fs.readFile('pedidos.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error leyendo los pedidos');
+    }
+
+    const pedidos = JSON.parse(data);
+    pedidos.push(nuevoPedido);
+
+    fs.writeFile('pedidos.json', JSON.stringify(pedidos), 'utf8', (err) => {
+      if (err) {
+        return res.status(500).send('Error guardando el pedido');
+      }
+      res.send('Pedido guardado exitosamente');
+    });
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
